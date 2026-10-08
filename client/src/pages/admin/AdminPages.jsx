@@ -1,5 +1,6 @@
 import StatCard from '../../components/StatCard';
 import ModulePage from '../../components/ModulePage';
+import ResourcePage from '../../components/ResourcePage';
 
 export function AdminDashboard() {
   return (
@@ -14,7 +15,12 @@ export function AdminDashboard() {
   );
 }
 
-export const Businesses = () => <ModulePage title="Businesses" description="Manage all tenant workspaces." />;
+export const Businesses = () => (
+  <ResourcePage title="Businesses" description="Manage all tenant workspaces."
+    endpoint="/admin/businesses"
+    columns={[{ key: 'name', label: 'Name' }, { key: 'type', label: 'Type' }, { key: 'phone', label: 'Phone' }, { key: 'created_at', label: 'Joined' }]}
+    fields={[{ key: 'name', label: 'Name', required: true }, { key: 'type', label: 'Type' }, { key: 'phone', label: 'Phone' }, { key: 'email', label: 'Email' }]} />
+);
 export const Users = () => <ModulePage title="Users" description="Platform users across businesses." />;
 export const Subscriptions = () => <ModulePage title="Subscriptions" description="Plans, status and renewals." />;
 export const Plans = () => <ModulePage title="Plans" description="Free, Starter, Business, Enterprise pricing and features." />;

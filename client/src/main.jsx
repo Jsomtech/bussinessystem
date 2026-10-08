@@ -10,6 +10,9 @@ const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: 1, staleTime: 30_000 } },
 });
 
+// apply saved theme before first render
+if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>

@@ -16,7 +16,20 @@ export default function Onboarding() {
   const [data, setData] = useState({});
   const current = STEPS[step];
 
-  const next = () => (step < STEPS.length - 1 ? setStep(step + 1) : navigate('/app'));
+  const next = async () => {
+    if (step < STEPS.length - 1) return setStep(step + 1);
+    try {
+      const { api } = await import('../api/client');
+      await api.post('/onboarding/bootstrap', {
+        businessName: data.name,
+        businessType: data.type,
+        plan: data.plan,
+      });
+    } catch (e) {
+      console.error('Bootstrap failed', e);
+    }
+    navigate('/app');
+  };
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center p-6">

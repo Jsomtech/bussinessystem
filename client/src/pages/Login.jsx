@@ -12,8 +12,17 @@ export default function Login() {
     e.preventDefault();
     setError('');
     const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) setError(error.message);
-    else navigate('/app');
+    if (error) {
+      setError(error.message);
+    } else {
+      // check role in the database
+      const { data: { user } } = await supabase.auth.getUser();
+      const { data: admin } = await supabase.from('platform_admins').select('role').eq('user_id', user.id).maybeSingle();
+      if (admin) return navigate('/admin');
+      const { data: membership } = await supabase.from('business_members').select('role').eq('user_id', user.id).limit(1).maybeSingle();
+      if (membership) return navigate('/app');
+      setError('Your account has no role assigned. Contact support.');
+    }
   };
 
   return (

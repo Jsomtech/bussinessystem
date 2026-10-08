@@ -1,7 +1,7 @@
 import { createResourceRepository } from '../repositories/resourceRepository.js';
 
-export function createResourceService(table) {
-  const repo = createResourceRepository(table);
+export function createResourceService(table, { unscoped = false } = {}) {
+  const repo = createResourceRepository(table, { unscoped });
   return {
     list: (businessId) => repo.list(businessId),
     get: (businessId, id) => repo.get(businessId, id),

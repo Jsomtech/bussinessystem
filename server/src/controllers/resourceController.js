@@ -1,7 +1,7 @@
 import { createResourceService } from '../services/resourceService.js';
 
-export function createResourceController(table) {
-  const service = createResourceService(table);
+export function createResourceController(table, { unscoped = false } = {}) {
+  const service = createResourceService(table, { unscoped });
   return {
     list: async (req, res, next) => { try { res.json(await service.list(req.businessId)); } catch (e) { next(e); } },
     get: async (req, res, next) => { try { res.json(await service.get(req.businessId, req.params.id)); } catch (e) { next(e); } },

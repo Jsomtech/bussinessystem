@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-slate-50 text-slate-800 antialiased;
+:root {
+  --jsom-primary: #6027FF;
+  --jsom-dark: #130C2D;
+  --jsom-black: #000000;
+  --jsom-background: #EEF0F4;
+  --jsom-white: #FFFFFF;
+  --jsom-primary-hover: #4D1FE0;
+  --jsom-border: #D9DCE3;
+  --jsom-muted: #6B7280;
 }
+
+body {
+  background-color: var(--jsom-background);
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Dark mode surface overrides ---------- */
+.dark body {
+  background-color: #0A0720;
+  color: #cbd5e1;
+}
+.dark .bg-white { background-color: #171033 !important; }
+.dark .bg-white\/90 { background-color: rgba(19, 12, 45, 0.9) !important; }
+.dark .bg-white\/80 { background-color: rgba(19, 12, 45, 0.8) !important; }
+.dark .bg-white\/60 { background-color: rgba(23, 16, 51, 0.6) !important; }
+.dark .bg-slate-50 { background-color: #0A0720 !important; }
+.dark .bg-slate-100 { background-color: #211A45 !important; }
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-300 { border-color: rgba(255, 255, 255, 0.08) !important; }
+.dark .text-slate-600,
+.dark .text-slate-500,
+.dark .text-slate-400 { color: #A7AEC2 !important; }
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #211A45;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.dark input::placeholder { color: #6E7590; }
+.dark table thead { background-color: #211A45 !important; }

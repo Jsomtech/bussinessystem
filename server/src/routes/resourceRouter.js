@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { createResourceController } from '../controllers/resourceController.js';
 
-export function resourceRouter(table) {
-  const c = createResourceController(table);
+export function resourceRouter(table, { unscoped = false } = {}) {
+  const c = createResourceController(table, { unscoped });
   const router = Router();
   router.get('/', c.list);
   router.get('/:id', c.get);

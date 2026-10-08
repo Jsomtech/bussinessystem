@@ -12,8 +12,11 @@ export default function Register() {
     e.preventDefault();
     setError('');
     const { error } = await supabase.auth.signUp({ email, password });
-    if (error) setError(error.message);
-    else navigate('/onboarding');
+    if (error) {
+      setError(error.message);
+    } else {
+      navigate('/onboarding');
+    }
   };
 
   return (
