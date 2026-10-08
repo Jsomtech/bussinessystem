@@ -1,0 +1,13 @@
+{
+  "name": "jsom-business",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Multi-tenant SaaS Business Operating System for Somali businesses",
+  "scripts": {
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "install:all": "npm --prefix client install && npm --prefix server install",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server run start"
+  }
+}
